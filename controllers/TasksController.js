@@ -13,6 +13,7 @@ class TaskController {
   }
 
   add(req, res) {
+    console.log(req.body);
     // if (req.body.password !== process.env.POST_PASSWORD) {
     //   res.json("Неверный пароль");
     //   return;
