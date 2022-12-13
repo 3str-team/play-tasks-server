@@ -15,12 +15,16 @@ class TaskController {
 
   add(req, res) {
     console.log("add", req.body);
-    // if (req.body.password !== process.env.POST_PASSWORD) {
-    //   res.json("Неверный пароль");
-    //   return;
-    // }
+    if (req.body.password !== process.env.POST_PASSWORD) {
+      res.json("Неверный пароль");
+      return;
+    }
     delete req.body.password;
-    const task = { id: v4(), taskId: tasks.at(-1).taskId + 1, ...req.body };
+    const task = {
+      id: v4(),
+      taskId: tasks[tasks.length - 1].taskId + 1,
+      ...req.body,
+    };
     console.log(task);
     tasks.push(task);
     fs.writeFile(
