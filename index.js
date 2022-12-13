@@ -20,7 +20,7 @@ app.use("/api", ApiRouter);
 const start = () => {
   try {
     app.listen(PORT, () => {
-      console.log(`Server started on localhost:${PORT}`);
+      console.log(`Server started on Meu:${PORT}`);
     });
   } catch (e) {
     console.log(e);
