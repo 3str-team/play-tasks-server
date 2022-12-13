@@ -1,10 +1,15 @@
 const router = require("express").Router();
 const TasksController = require("../../controllers/TasksController");
+const cors = require("cors");
 
-router.get("/tasks/getAll", TasksController.getAll);
+router.get("/tasks/getAll", cors({ origin: "*" }), TasksController.getAll);
 
-router.get("/tasks/get/:taskId", TasksController.getByTaskId);
+router.get(
+  "/tasks/get/:taskId",
+  cors({ origin: "*" }),
+  TasksController.getByTaskId
+);
 
-router.post("/tasks/add", TasksController.add);
+router.post("/tasks/add", cors({ origin: "*" }), TasksController.add);
 
 module.exports = router;
