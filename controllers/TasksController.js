@@ -20,9 +20,11 @@ class TaskController {
       return;
     }
     delete req.body.password;
+    const currentTaskId =
+      tasks.length > 0 ? tasks[tasks.length - 1].taskId + 1 : 1;
     const task = {
       id: v4(),
-      taskId: tasks[tasks.length - 1].taskId + 1,
+      taskId: currentTaskId,
       ...req.body,
     };
     console.log(task);
