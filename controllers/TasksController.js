@@ -5,6 +5,7 @@ const { v4 } = require("uuid");
 
 class TaskController {
   getAll(req, res) {
+    console.log("get");
     res.json(tasks);
   }
 
@@ -13,7 +14,7 @@ class TaskController {
   }
 
   add(req, res) {
-    console.log(req.body);
+    console.log("add", req.body);
     // if (req.body.password !== process.env.POST_PASSWORD) {
     //   res.json("Неверный пароль");
     //   return;
