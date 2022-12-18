@@ -12,7 +12,6 @@ app.use(express.json());
 app.use(
   cors({
     origin: "*",
-    allowedHeaders: "*",
   })
 );
 
@@ -21,7 +20,7 @@ app.use("/api", ApiRouter);
 const start = () => {
   try {
     app.listen(PORT, () => {
-      console.log(`Server started on Meu:${PORT}`);
+      console.log(`Server started on localhost:${PORT}`);
     });
   } catch (e) {
     console.log(e);
