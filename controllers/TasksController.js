@@ -18,6 +18,10 @@ class TaskController {
     fs.writeFile(path.resolve("data", "tasks.json"), JSON.stringify(data), cb);
   }
 
+  static findTaskByTaskId(taskId) {
+    return tasks.filter((task) => task.taskId === taskId)[0];
+  }
+
   getAll(req, res) {
     res.json(tasks);
   }
@@ -28,10 +32,10 @@ class TaskController {
 
   add(req, res) {
     const currentTaskId =
-      tasks.length > 0 ? tasks[tasks.length - 1].taskId + 1 : 1;
+      tasks.length > 0 ? +tasks[tasks.length - 1].taskId + 1 : 1;
     const task = {
       id: v4(),
-      taskId: currentTaskId,
+      taskId: "" + currentTaskId,
       ...req.body.data,
     };
     tasks.push(task);
@@ -45,6 +49,21 @@ class TaskController {
     tasks = tasks.filter((task) => task.taskId !== taskId);
     TaskController.updateDataFile(tasks, () => {
       res.status(200).json(tasks);
+    });
+  }
+
+  update(req, res) {
+    const taskId = req.body.data.taskId;
+    for (let i = 0; i < tasks.length; ++i) {
+      if (tasks[i].taskId == taskId) {
+        Object.keys(req.body.data).forEach((key) => {
+          tasks[i][key] = req.body.data[key];
+        });
+      }
+    }
+    TaskController.updateDataFile(tasks, () => {
+      console.log(tasks[taskId]);
+      res.status(200).json({ message: "Задача обновлена" });
     });
   }
 }

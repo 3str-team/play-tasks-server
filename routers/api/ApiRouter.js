@@ -8,6 +8,16 @@ router.get("/tasks/get/:taskId", TasksController.getByTaskId);
 
 router.post("/tasks/add", TasksController.checkPassword, TasksController.add);
 
-router.delete("/tasks/delete", TasksController.checkPassword, TasksController.delete);
+router.delete(
+  "/tasks/delete",
+  TasksController.checkPassword,
+  TasksController.delete
+);
+
+router.put(
+  "/tasks/update",
+  TasksController.checkPassword,
+  TasksController.update
+);
 
 module.exports = router;
